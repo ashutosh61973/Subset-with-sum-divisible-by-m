@@ -1,0 +1,47 @@
+Subset with sum divisible by m
+==================
+//by ashutosh dixit
+
+**this is my recursive approach with memoization  **
+**_this is dp problem basicaly_**
+
+~~~~~
+#include <iostream>
+#include <map>
+#include<string>
+using namespace std;
+map<string,int>mp;
+
+int subsetDivide(int A[], int n, int sum, int m){
+string str=to_string(n);
+str=str+to_string(sum);
+if(sum!=0 && sum%m==0) return 1;
+if(n==0) return 0;
+if(mp.find(str)!=mp.end())
+return mp[str];
+return subsetDivide(A,n-1, sum+A[n-1],m) ||subsetDivide(A,n-1,sum,m);
+}
+int main() {
+// your code goes here
+int n, m;
+cin >> n >> m;
+
+int A[n];
+for(int i=0;i<n;++i) cin="">> A[i];
+
+cout << subsetDivide(A, n, 0, m) << endl;
+
+return 0;
+}
+~~~~~
+
+
+
+i think this approach is better -->in this we assume first sum as zero then we check all the possibilities of making sum that is divisible by m in this we also memoizise it to reduce the time
+
+see the code above and take a breath and then see look up the code step by step 
+**this problem is basically  is a variant of subset sum problem**
+**you can also reduce time by making two case -->**
+1 &mdash; if n>m then simply return the true
+2-  if n<=m then do problem recursively
+** to achive these above case you simply add  two case above in the code **    
